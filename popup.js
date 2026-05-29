@@ -105,6 +105,8 @@ chatMessageEl.addEventListener("change", () => {
 runBtn.addEventListener("click", async () => {
   runBtn.disabled    = true;
   runBtn.textContent = "Checking…";
+  // Flush any unsaved message before the background reads storage.
+  await chrome.storage.local.set({ chatMessage: chatMessageEl.value.trim() });
   try {
     await chrome.runtime.sendMessage({ type: "RUN_NOW" });
   } finally {
