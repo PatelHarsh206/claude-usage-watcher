@@ -97,6 +97,10 @@ newChatUrlEl.addEventListener("change", () => {
   }
 });
 
+chatMessageEl.addEventListener("input", () => {
+  chrome.storage.local.set({ chatMessage: chatMessageEl.value.trim() });
+});
+
 chatMessageEl.addEventListener("change", () => {
   chrome.storage.local.set({ chatMessage: chatMessageEl.value.trim() });
   flashSaved();
